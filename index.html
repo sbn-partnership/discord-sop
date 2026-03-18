@@ -58,6 +58,37 @@
     z-index: 100;
     backdrop-filter: blur(12px);
     background: rgba(255,255,255,0.92);
+    gap: 16px;
+  }
+
+  .top-bar-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    max-width: 280px;
+  }
+
+  .top-bar-progress-bar {
+    flex: 1;
+    height: 5px;
+    background: var(--border-light);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .top-bar-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--yellow), var(--cyan));
+    border-radius: 3px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .top-bar-progress-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    white-space: nowrap;
   }
 
   .top-bar-brand {
@@ -212,36 +243,6 @@
     font-size: 12px;
     color: var(--text-tertiary);
     line-height: 1.4;
-  }
-
-  /* ===== PROGRESS BAR ===== */
-  .progress-container {
-    padding: 20px 12px 8px;
-    border-top: 1px solid var(--border-light);
-    margin-top: 16px;
-  }
-
-  .progress-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-tertiary);
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .progress-bar {
-    height: 6px;
-    background: var(--border-light);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--yellow), var(--cyan));
-    border-radius: 3px;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* ===== MAIN CONTENT ===== */
@@ -981,6 +982,12 @@
   <div class="top-bar-brand">
     <span class="brand-dot"></span>
     <span>디스코드 온보딩 가이드</span>
+  </div>
+  <div class="top-bar-progress" id="topBarProgress">
+    <div class="top-bar-progress-bar">
+      <div class="top-bar-progress-fill" id="topBarProgressFill" style="width: 0%"></div>
+    </div>
+    <span class="top-bar-progress-label" id="topBarProgressLabel">0%</span>
   </div>
   <div class="mode-tabs">
     <button class="mode-tab" onclick="switchMode('creator')">크리에이터 가이드</button>
@@ -2058,24 +2065,17 @@
       `;
     });
 
-    // Progress
-    const totalSteps = steps.length - 1; // exclude welcome
+    sidebar.innerHTML = html;
+    updateTopBarProgress();
+  }
+
+  function updateTopBarProgress() {
+    const steps = STEPS[currentMode];
+    const totalSteps = steps.length - 1;
     const currentIdx = steps.findIndex(s => s.id === currentPage);
     const progress = currentIdx <= 0 ? 0 : Math.round((currentIdx / totalSteps) * 100);
-
-    html += `
-      <div class="progress-container">
-        <div class="progress-label">
-          <span>진행률</span>
-          <span>${progress}%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: ${progress}%"></div>
-        </div>
-      </div>
-    `;
-
-    sidebar.innerHTML = html;
+    document.getElementById('topBarProgressFill').style.width = progress + '%';
+    document.getElementById('topBarProgressLabel').textContent = progress + '%';
   }
 
   // ===== PAGE NAVIGATION =====
