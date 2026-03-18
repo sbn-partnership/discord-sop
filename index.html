@@ -632,7 +632,8 @@
     color: white;
   }
 
-  .copy-block pre {
+  .copy-block pre,
+  .copy-block .editable-template {
     padding: 20px;
     font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 13px;
@@ -641,6 +642,37 @@
     overflow-x: auto;
     white-space: pre-wrap;
     word-break: break-word;
+  }
+
+  .copy-block .editable-template {
+    outline: none;
+    min-height: 100px;
+    cursor: text;
+    border: 2px solid transparent;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    transition: border-color var(--transition);
+  }
+
+  .copy-block .editable-template:focus {
+    border-color: var(--cyan);
+  }
+
+  .copy-block .editable-template .template-highlight {
+    background: rgba(233, 0, 75, 0.3);
+    color: #FFD03E;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+
+  .edit-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px 0;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    background: #1A1D23;
   }
 
   /* Navigation Buttons */
@@ -1525,9 +1557,9 @@
           <span class="copy-block-label">크리에이터 초대 메시지 템플릿</span>
           <button class="copy-btn" onclick="copyTemplate(this)">복사</button>
         </div>
-        <pre>[제목] 🤝 샌드박스 크리에이터 전용 소통 채널(디스코드 서버) 초대 안내
+        <div class="editable-template" contenteditable="true">[제목] 🤝 샌드박스 크리에이터 전용 소통 채널(디스코드 서버) 초대 안내
 
-안녕하세요, [크리에이터 이름]님!
+안녕하세요, <span class="template-highlight">[크리에이터 이름]</span>님!
 
 샌드박스와 함께하게 되신 것을 진심으로 환영합니다. 🎉
 
@@ -1541,7 +1573,7 @@
 
 2. 전용 서버 입장하기
    계정 생성이 완료되었다면, 아래 초대 링크를 클릭해 주세요.
-   👉 [전달받은 초대 링크를 여기에 붙여넣으세요]
+   👉 <span class="template-highlight">[전달받은 초대 링크를 여기에 붙여넣으세요]</span>
    링크 클릭 후 [초대 수락하기]를 누르면 입장이 완료됩니다.
 
 3. 입장 후 인사 남기기
@@ -1551,7 +1583,8 @@
 진행 중 궁금한 점이 있으시다면 언제든 회신 부탁드립니다.
 
 감사합니다.
-담당자 [본인 이름] 드림</pre>
+담당자 <span class="template-highlight">[본인 이름]</span> 드림</div>
+        <div class="edit-hint">✏️ 노란색 부분을 클릭해서 직접 수정한 뒤 복사하세요</div>
       </div>
 
       <div class="checklist">
@@ -1838,22 +1871,23 @@
           <span class="copy-block-label">캠페인 첫 메시지 템플릿</span>
           <button class="copy-btn" onclick="copyTemplate(this)">복사</button>
         </div>
-        <pre>YYMM-과업유형-캠페인
+        <div class="editable-template" contenteditable="true"><span class="template-highlight">YYMM</span>-<span class="template-highlight">과업유형</span>-<span class="template-highlight">캠페인</span>
 
 ● 과업
-사전 홍보 : 00월00일 ~ 00월00일 중, 날짜 택 1
-라이브 : 00월00일 ~ 00월00일 중, 날짜 택 1
-업로드 : 00월00일 ~ 00월00일 중, 날짜 택 1
+사전 홍보 : <span class="template-highlight">00월00일</span> ~ <span class="template-highlight">00월00일</span> 중, 날짜 택 1
+라이브 : <span class="template-highlight">00월00일</span> ~ <span class="template-highlight">00월00일</span> 중, 날짜 택 1
+업로드 : <span class="template-highlight">00월00일</span> ~ <span class="template-highlight">00월00일</span> 중, 날짜 택 1
 
 ● 마케팅 포인트
-AAAAAA
-BBBBBB
-CCCCCC
+<span class="template-highlight">AAAAAA</span>
+<span class="template-highlight">BBBBBB</span>
+<span class="template-highlight">CCCCCC</span>
 
 ● 필수 소구 포인트
-AAAAAA
-BBBBBB
-CCCCCC</pre>
+<span class="template-highlight">AAAAAA</span>
+<span class="template-highlight">BBBBBB</span>
+<span class="template-highlight">CCCCCC</span></div>
+        <div class="edit-hint">✏️ 노란색 부분을 클릭해서 직접 수정한 뒤 복사하세요</div>
       </div>
 
       <div class="checklist">
@@ -2087,10 +2121,11 @@ CCCCCC</pre>
 
   // ===== COPY TEMPLATE =====
   function copyTemplate(btn) {
-    const pre = btn.closest('.copy-block').querySelector('pre');
-    navigator.clipboard.writeText(pre.textContent).then(() => {
+    const el = btn.closest('.copy-block').querySelector('.editable-template, pre');
+    navigator.clipboard.writeText(el.innerText).then(() => {
       btn.textContent = '복사됨!';
-      setTimeout(() => { btn.textContent = '복사'; }, 2000);
+      btn.style.background = 'rgba(0,193,222,0.3)';
+      setTimeout(() => { btn.textContent = '복사'; btn.style.background = ''; }, 2000);
     });
   }
 
