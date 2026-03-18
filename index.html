@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>디스코드 온보딩 가이드 — Sandbox Network</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<style>
+  :root {
+    --red: #E9004B;
+    --yellow: #FFD03E;
+    --cyan: #00C1DE;
+    --bg: #FFFFFF;
+    --bg-subtle: #F7F8FA;
+    --bg-sidebar: #FAFBFC;
+    --text-primary: #1A1D23;
+    --text-secondary: #5F6672;
+    --text-tertiary: #9CA3AF;
+    --border: #E8ECF0;
+    --border-light: #F0F2F5;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --sidebar-width: 300px;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== MODE SELECTOR (TOP BAR) ===== */
+  .top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.92);
+  }
+
+  .top-bar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .brand-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+
+  .mode-tabs {
+    display: flex;
+    background: var(--bg-subtle);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 2px;
+  }
+
+  .mode-tab {
+    padding: 7px 20px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition);
+    letter-spacing: -0.01em;
+  }
+
+  .mode-tab:hover {
+    color: var(--text-primary);
+  }
+
+  .mode-tab.active {
+    background: var(--bg);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 24px 16px;
+    z-index: 50;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+
+  .sidebar-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    padding: 8px 12px 8px;
+    margin-top: 8px;
+  }
+
+  .sidebar-section-label:first-child {
+    margin-top: 0;
+  }
+
+  .step-nav-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition);
+    margin-bottom: 2px;
+    border: 1px solid transparent;
+  }
+
+  .step-nav-item:hover {
+    background: rgba(0,0,0,0.03);
+  }
+
+  .step-nav-item.active {
+    background: var(--bg);
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .step-nav-item.completed .step-nav-number {
+    background: var(--cyan);
+    color: white;
+  }
+
+  .step-nav-number {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    transition: all var(--transition);
+  }
+
+  .step-nav-item.active .step-nav-number {
+    background: var(--red);
+    color: white;
+  }
+
+  .step-nav-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .step-nav-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .step-nav-desc {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-container {
+    padding: 20px 12px 8px;
+    border-top: 1px solid var(--border-light);
+    margin-top: 16px;
+  }
+
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .progress-bar {
+    height: 6px;
+    background: var(--border-light);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--yellow), var(--cyan));
+    border-radius: 3px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .main {
+    margin-left: var(--sidebar-width);
+    margin-top: 56px;
+    min-height: calc(100vh - 56px);
+  }
+
+  .page {
+    display: none;
+    animation: fadeIn 0.35s ease;
+  }
+
+  .page.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 40px 120px;
+  }
+
+  /* Step Header */
+  .step-header {
+    margin-bottom: 36px;
+  }
+
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+  }
+
+  .step-badge.prepare { background: #FFF3E0; color: #E65100; }
+  .step-badge.action { background: #E3F2FD; color: #1565C0; }
+  .step-badge.check { background: #E8F5E9; color: #2E7D32; }
+  .step-badge.manage { background: #F3E5F5; color: #7B1FA2; }
+
+  .step-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .step-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Video/Media Area */
+  .media-block {
+    margin: 32px 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .media-block video,
+  .media-block img {
+    width: 100%;
+    display: block;
+  }
+
+  .media-placeholder {
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--text-tertiary);
+    background: linear-gradient(135deg, var(--bg-subtle) 0%, #f0f2f5 100%);
+  }
+
+  .media-placeholder-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+  .media-placeholder-text {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .media-caption {
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: var(--bg);
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .media-caption-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    flex-shrink: 0;
+  }
+
+  /* Instruction Steps */
+  .instructions {
+    margin: 32px 0;
+  }
+
+  .instructions h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .instructions h3::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    border-radius: 2px;
+    background: var(--red);
+  }
+
+  .instruction-list {
+    list-style: none;
+    counter-reset: instruction;
+  }
+
+  .instruction-item {
+    counter-increment: instruction;
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
+  }
+
+  .instruction-item:last-child {
+    border-bottom: none;
+  }
+
+  .instruction-number {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--bg-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .instruction-content {
+    flex: 1;
+  }
+
+  .instruction-content p {
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+
+  .instruction-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .instruction-content strong {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .instruction-content code {
+    background: var(--bg-subtle);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    border: 1px solid var(--border-light);
+  }
+
+  /* Inline GIF in instruction */
+  .instruction-media {
+    margin-top: 12px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .instruction-media img,
+  .instruction-media video {
+    width: 100%;
+    display: block;
+  }
+
+  /* Callout boxes */
+  .callout {
+    display: flex;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    margin: 24px 0;
+    font-size: 14px;
+    line-height: 1.65;
+    align-items: flex-start;
+  }
+
+  .callout-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .callout.tip {
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+  }
+
+  .callout.warning {
+    background: #FFF1F2;
+    border: 1px solid #FECDD3;
+  }
+
+  .callout.info {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+  }
+
+  .callout.success {
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+  }
+
+  /* Checklist */
+  .checklist {
+    margin: 36px 0;
+    background: var(--bg-subtle);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    border: 1px solid var(--border-light);
+  }
+
+  .checklist-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12px;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-light);
+    cursor: pointer;
+    user-select: none;
+    transition: all var(--transition);
+  }
+
+  .checklist-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .checklist-item:hover {
+    opacity: 0.85;
+  }
+
+  .checklist-checkbox {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--transition);
+    background: var(--bg);
+  }
+
+  .checklist-item.checked .checklist-checkbox {
+    background: var(--cyan);
+    border-color: var(--cyan);
+  }
+
+  .checklist-check-icon {
+    opacity: 0;
+    transition: all var(--transition);
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .checklist-item.checked .checklist-check-icon {
+    opacity: 1;
+  }
+
+  .checklist-item.checked .checklist-label {
+    color: var(--text-tertiary);
+    text-decoration: line-through;
+  }
+
+  .checklist-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: all var(--transition);
+  }
+
+  /* Copy block */
+  .copy-block {
+    position: relative;
+    margin: 24px 0;
+    background: #1A1D23;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .copy-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .copy-block-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .copy-btn {
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.7);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .copy-btn:hover {
+    background: rgba(255,255,255,0.15);
+    color: white;
+  }
+
+  .copy-block pre {
+    padding: 20px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #E2E8F0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Navigation Buttons */
+  .page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .nav-btn:hover {
+    border-color: var(--cyan);
+    box-shadow: var(--shadow-sm);
+    background: var(--bg);
+  }
+
+  .nav-btn.primary {
+    background: var(--text-primary);
+    color: white;
+    border-color: var(--text-primary);
+  }
+
+  .nav-btn.primary:hover {
+    background: #2d3139;
+    border-color: #2d3139;
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-btn-label {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-btn.primary .nav-btn-label {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .nav-btn-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-btn-arrow {
+    font-size: 18px;
+    color: var(--text-tertiary);
+  }
+
+  .nav-btn.primary .nav-btn-arrow {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .nav-btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .nav-btn.prev .nav-btn-text {
+    text-align: right;
+  }
+
+  .nav-spacer {
+    flex: 1;
+  }
+
+  /* ===== WELCOME PAGE ===== */
+  .welcome-hero {
+    text-align: center;
+    padding: 80px 40px 60px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .welcome-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, var(--red), var(--cyan));
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0 8px 32px rgba(233, 0, 75, 0.2);
+  }
+
+  .welcome-title {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .welcome-desc {
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .welcome-start-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 36px;
+    border-radius: var(--radius-md);
+    background: var(--text-primary);
+    color: white;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition);
+    letter-spacing: -0.01em;
+  }
+
+  .welcome-start-btn:hover {
+    background: #2d3139;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-1px);
+  }
+
+  .welcome-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 560px;
+    margin: 48px auto 0;
+  }
+
+  .welcome-card {
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    text-align: left;
+    background: var(--bg);
+    transition: all var(--transition);
+  }
+
+  .welcome-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border);
+  }
+
+  .welcome-card-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .welcome-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .welcome-card-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Template block */
+  .template-block {
+    margin: 24px 0;
+  }
+
+  .template-block-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Example box */
+  .example-box {
+    margin: 20px 0;
+    padding: 20px 24px;
+    border-radius: var(--radius-md);
+    background: var(--bg-subtle);
+    border-left: 3px solid var(--cyan);
+  }
+
+  .example-box-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+
+  .example-box p {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* Table */
+  .naming-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .naming-table th {
+    text-align: left;
+    padding: 10px 16px;
+    background: var(--bg-subtle);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .naming-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-primary);
+  }
+
+  .naming-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Category flow */
+  .category-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .category-tag {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+  }
+
+  .category-tag.active {
+    background: var(--red);
+    color: white;
+    border-color: var(--red);
+  }
+
+  .category-arrow {
+    color: var(--text-tertiary);
+    font-size: 14px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .page-inner { padding: 32px 20px 100px; }
+    .step-title { font-size: 26px; }
+    .welcome-title { font-size: 30px; }
+    .welcome-cards { grid-template-columns: 1fr; }
+    .welcome-hero { padding: 48px 20px 40px; }
+    .mode-tabs { display: none; }
+    .top-bar { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-brand">
+    <span class="brand-dot"></span>
+    <span>디스코드 온보딩 가이드</span>
+  </div>
+  <div class="mode-tabs">
+    <button class="mode-tab active" onclick="switchMode('creator')">크리에이터 가이드</button>
+    <button class="mode-tab" onclick="switchMode('pm')">PM 운영 가이드</button>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <!-- Populated by JS -->
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="main" id="main">
+  <!-- ===== WELCOME ===== -->
+  <div class="page active" data-page="welcome" data-mode="all">
+    <div class="welcome-hero">
+      <div class="welcome-icon">💬</div>
+      <h1 class="welcome-title">디스코드, 처음이라면<br>여기서 시작하세요</h1>
+      <p class="welcome-desc">
+        샌드박스 네트워크는 크리에이터와의 빠르고 원활한 소통을 위해
+        <strong>디스코드(Discord)</strong>를 메인 소통 채널로 사용합니다.<br>
+        이 가이드를 따라가면 누구나 10분 안에 시작할 수 있습니다.
+      </p>
+      <button class="welcome-start-btn" onclick="goToPage('step-0-1')">
+        시작하기 →
+      </button>
+      <div class="welcome-cards">
+        <div class="welcome-card">
+          <div class="welcome-card-icon">🎬</div>
+          <div class="welcome-card-title">영상으로 따라하기</div>
+          <div class="welcome-card-desc">모든 단계에 화면 녹화 영상이 포함되어 있어, 보고 그대로 따라하면 됩니다.</div>
+        </div>
+        <div class="welcome-card">
+          <div class="welcome-card-icon">✅</div>
+          <div class="welcome-card-title">체크리스트</div>
+          <div class="welcome-card-desc">각 단계마다 체크리스트로 빠뜨린 것 없이 확인할 수 있습니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 0-1: 디스코드 설치 ===== -->
+  <div class="page" data-page="step-0-1" data-mode="all">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge prepare">시작 준비</div>
+        <h2 class="step-title">디스코드 앱 설치하기</h2>
+        <p class="step-subtitle">PC와 모바일 모두 설치하면 언제 어디서든 소통할 수 있습니다. PC 앱을 먼저 설치하는 것을 권장합니다.</p>
+      </div>
+
+      <div class="media-block">
+        <div class="media-placeholder">
+          <div class="media-placeholder-icon">🎬</div>
+          <div class="media-placeholder-text">디스코드 설치 과정 영상 (MP4)</div>
+        </div>
+        <div class="media-caption">
+          <span class="media-caption-dot"></span>
+          Recordly로 녹화한 설치 과정을 여기에 넣으세요
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>순서대로 따라하세요</h3>
+        <ol class="instruction-list">
+          <li class="instruction-item">
+            <span class="instruction-number">1</span>
+            <div class="instruction-content">
+              <p><strong>디스코드 다운로드 페이지</strong>에 접속합니다.</p>
+              <p><a href="https://discord.com/download" target="_blank" style="color: var(--cyan); font-weight: 600;">https://discord.com/download</a></p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">2</span>
+            <div class="instruction-content">
+              <p>화면에 보이는 <strong>큰 파란색 다운로드 버튼</strong>을 클릭합니다.</p>
+              <p>사용 중인 운영체제(Windows / Mac)에 맞는 버전이 자동으로 선택됩니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">3</span>
+            <div class="instruction-content">
+              <p>다운로드된 <strong>설치 파일을 실행</strong>합니다.</p>
+              <p>Windows: <code>DiscordSetup.exe</code> / Mac: <code>Discord.dmg</code></p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">4</span>
+            <div class="instruction-content">
+              <p>설치가 완료되면 <strong>디스코드 앱이 자동으로 실행</strong>됩니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div>모바일에서도 사용하려면 앱스토어(iOS) 또는 플레이스토어(Android)에서 <strong>"Discord"</strong>를 검색하여 설치하세요.</div>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">PC에 디스코드 앱을 설치했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">앱이 정상적으로 실행된다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('welcome')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">시작 화면</span>
+          </div>
+        </button>
+        <button class="nav-btn primary" onclick="goToPage('step-0-2')">
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">다음</span>
+            <span class="nav-btn-title">회원가입하기</span>
+          </div>
+          <span class="nav-btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 0-2: 회원가입 ===== -->
+  <div class="page" data-page="step-0-2" data-mode="all">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge prepare">시작 준비</div>
+        <h2 class="step-title">회원가입하기</h2>
+        <p class="step-subtitle">디스코드 계정을 만듭니다. 이미 계정이 있다면 이 단계를 건너뛰세요.</p>
+      </div>
+
+      <div class="media-block">
+        <div class="media-placeholder">
+          <div class="media-placeholder-icon">🎬</div>
+          <div class="media-placeholder-text">회원가입 과정 영상 (MP4)</div>
+        </div>
+        <div class="media-caption">
+          <span class="media-caption-dot"></span>
+          이메일 입력부터 인증까지 전체 과정
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>순서대로 따라하세요</h3>
+        <ol class="instruction-list">
+          <li class="instruction-item">
+            <span class="instruction-number">1</span>
+            <div class="instruction-content">
+              <p>디스코드 앱을 실행하고, <strong>"가입"</strong> 버튼을 클릭합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">2</span>
+            <div class="instruction-content">
+              <p><strong>이메일 주소</strong>를 입력합니다.</p>
+              <div class="callout info" style="margin-top: 8px; margin-bottom: 0;">
+                <span class="callout-icon">📌</span>
+                <div><strong>PM인 경우:</strong> 반드시 회사 이메일 <code>@sandboxnetwork.net</code>으로 가입하세요.</div>
+              </div>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">3</span>
+            <div class="instruction-content">
+              <p><strong>표시 이름</strong>을 입력합니다. 나중에 바꿀 수 있으니 편하게 입력하세요.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">4</span>
+            <div class="instruction-content">
+              <p><strong>비밀번호</strong>를 설정합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">5</span>
+            <div class="instruction-content">
+              <p><strong>생년월일</strong>을 입력하고 <strong>"계속"</strong>을 클릭합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">6</span>
+            <div class="instruction-content">
+              <p>이메일로 온 <strong>인증 링크</strong>를 클릭해서 가입을 완료합니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">디스코드 계정을 만들었다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">이메일 인증을 완료했다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('step-0-1')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">앱 설치하기</span>
+          </div>
+        </button>
+        <button class="nav-btn primary" onclick="goToPage('step-0-3')">
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">다음</span>
+            <span class="nav-btn-title">프로필 설정하기</span>
+          </div>
+          <span class="nav-btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 0-3: 프로필 설정 ===== -->
+  <div class="page" data-page="step-0-3" data-mode="all">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge prepare">시작 준비</div>
+        <h2 class="step-title">프로필 설정하기</h2>
+        <p class="step-subtitle">이름을 실명으로 설정해서 팀원들이 바로 알아볼 수 있게 합니다.</p>
+      </div>
+
+      <div class="media-block">
+        <div class="media-placeholder">
+          <div class="media-placeholder-icon">🎬</div>
+          <div class="media-placeholder-text">프로필 설정 과정 영상 (MP4)</div>
+        </div>
+        <div class="media-caption">
+          <span class="media-caption-dot"></span>
+          사용자 설정에서 프로필 이름 변경하는 과정
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>순서대로 따라하세요</h3>
+        <ol class="instruction-list">
+          <li class="instruction-item">
+            <span class="instruction-number">1</span>
+            <div class="instruction-content">
+              <p>디스코드 화면 <strong>왼쪽 하단</strong>에서 자기 이름 옆의 <strong>톱니바퀴 아이콘(⚙️)</strong>을 클릭합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">2</span>
+            <div class="instruction-content">
+              <p>왼쪽 메뉴에서 <strong>"프로필"</strong>을 클릭합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">3</span>
+            <div class="instruction-content">
+              <p><strong>"표시 이름"</strong>을 클릭하여 수정합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">4</span>
+            <div class="instruction-content">
+              <p>이름을 <strong>샌드박스 실명</strong>으로 변경합니다.</p>
+              <div class="example-box">
+                <div class="example-box-label">예시</div>
+                <p>샌드박스 홍길동</p>
+              </div>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">5</span>
+            <div class="instruction-content">
+              <p>하단의 <strong>"변경 사항 저장"</strong> 버튼을 클릭합니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">표시 이름을 샌드박스 실명으로 설정했다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('step-0-2')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">회원가입하기</span>
+          </div>
+        </button>
+        <button class="nav-btn primary" onclick="goToPage('step-0-4')">
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">다음</span>
+            <span class="nav-btn-title">서버 입장하기</span>
+          </div>
+          <span class="nav-btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 0-4: 서버 입장 ===== -->
+  <div class="page" data-page="step-0-4" data-mode="all">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge prepare">시작 준비</div>
+        <h2 class="step-title">서버에 입장하기</h2>
+        <p class="step-subtitle">전달받은 초대 링크를 통해 디스코드 서버에 입장합니다.</p>
+      </div>
+
+      <div class="media-block">
+        <div class="media-placeholder">
+          <div class="media-placeholder-icon">🎬</div>
+          <div class="media-placeholder-text">서버 입장 과정 영상 (GIF)</div>
+        </div>
+        <div class="media-caption">
+          <span class="media-caption-dot"></span>
+          초대 링크 클릭 → 서버 입장까지
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>순서대로 따라하세요</h3>
+        <ol class="instruction-list">
+          <li class="instruction-item">
+            <span class="instruction-number">1</span>
+            <div class="instruction-content">
+              <p>담당 PM에게 전달받은 <strong>초대 링크</strong>를 클릭합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">2</span>
+            <div class="instruction-content">
+              <p><strong>"초대 수락하기"</strong> 버튼을 클릭합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">3</span>
+            <div class="instruction-content">
+              <p>서버에 입장한 후, <strong>#🖐️입장</strong> 채널에 인사를 남깁니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout warning">
+        <span class="callout-icon">⚠️</span>
+        <div>초대 링크는 <strong>7일의 유효 기간</strong>이 있습니다. 만료되면 담당 PM에게 다시 요청하세요.</div>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">서버에 입장했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">#🖐️입장 채널에 인사를 남겼다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('step-0-3')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">프로필 설정하기</span>
+          </div>
+        </button>
+        <button class="nav-btn primary" onclick="goToPage('step-1')" data-pm-only>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">다음</span>
+            <span class="nav-btn-title">서버 개설 신청하기</span>
+          </div>
+          <span class="nav-btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 1: 서버 개설 신청 (PM ONLY) ===== -->
+  <div class="page" data-page="step-1" data-mode="pm">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge action">PM 운영</div>
+        <h2 class="step-title">서버 개설 신청하기</h2>
+        <p class="step-subtitle">신규 크리에이터 전용 서버를 개설하기 위해 담당자에게 신청합니다.</p>
+      </div>
+
+      <div class="media-block">
+        <div class="media-placeholder">
+          <div class="media-placeholder-icon">🎬</div>
+          <div class="media-placeholder-text">서버 개설 신청 과정 영상 (MP4)</div>
+        </div>
+        <div class="media-caption">
+          <span class="media-caption-dot"></span>
+          신청서 작성부터 초대 링크 수령까지
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>신청 전 준비물</h3>
+        <ol class="instruction-list">
+          <li class="instruction-item">
+            <span class="instruction-number">1</span>
+            <div class="instruction-content">
+              <p><strong>크리에이터명</strong>을 확인합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">2</span>
+            <div class="instruction-content">
+              <p><strong>서버 프로필 이미지</strong>를 준비합니다. (서버 아이콘으로 사용할 대표 이미지)</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="instructions">
+        <h3>신청 절차</h3>
+        <ol class="instruction-list">
+          <li class="instruction-item">
+            <span class="instruction-number">1</span>
+            <div class="instruction-content">
+              <p><strong>서버 개설 신청서</strong>를 작성합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">2</span>
+            <div class="instruction-content">
+              <p>담당자가 서버를 생성합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">3</span>
+            <div class="instruction-content">
+              <p><strong>초대 링크</strong>를 전달받습니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">4</span>
+            <div class="instruction-content">
+              <p>디스코드에 입장하여 관리자 권한을 확인합니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout tip">
+        <span class="callout-icon">⏱️</span>
+        <div>초대 링크는 <strong>7일의 유효 기간</strong>이 있습니다. 만료되면 담당자에게 다시 요청해야 합니다.</div>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">서버 개설 신청을 완료했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">크리에이터명과 프로필 이미지를 함께 전달했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">디스코드에 입장해서 관리자 권한을 받았다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('step-0-4')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">서버 입장하기</span>
+          </div>
+        </button>
+        <button class="nav-btn primary" onclick="goToPage('step-2')">
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">다음</span>
+            <span class="nav-btn-title">초대 링크 전달하기</span>
+          </div>
+          <span class="nav-btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 2: 초대 링크 전달 (PM ONLY) ===== -->
+  <div class="page" data-page="step-2" data-mode="pm">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge action">PM 운영</div>
+        <h2 class="step-title">크리에이터에게 초대 링크 전달하기</h2>
+        <p class="step-subtitle">운영 담당자에게 받은 초대 링크를 해당 크리에이터에게 정확하게 전달합니다.</p>
+      </div>
+
+      <div class="instructions">
+        <h3>PM이 꼭 해야 하는 것</h3>
+        <ol class="instruction-list">
+          <li class="instruction-item">
+            <span class="instruction-number">1</span>
+            <div class="instruction-content">
+              <p>전달받은 초대 링크를 <strong>해당 크리에이터에게만</strong> 보냅니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">2</span>
+            <div class="instruction-content">
+              <p>링크와 함께 <strong>입장 후 어디에 인사를 남기면 되는지</strong> 안내합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">3</span>
+            <div class="instruction-content">
+              <p>링크가 외부에 퍼지지 않도록 주의합니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout warning">
+        <span class="callout-icon">🔒</span>
+        <div>초대 링크는 <strong>누구나 입장할 수 있는 열쇠</strong>처럼 생각하세요. 크리에이터 외 다른 사람에게 전달되면 안 됩니다.</div>
+      </div>
+
+      <div class="template-block">
+        <div class="template-block-title">📋 바로 복사해서 쓰는 안내 문구</div>
+      </div>
+      <div class="copy-block">
+        <div class="copy-block-header">
+          <span class="copy-block-label">크리에이터 초대 메시지 템플릿</span>
+          <button class="copy-btn" onclick="copyTemplate(this)">복사</button>
+        </div>
+        <pre>[제목] 🤝 샌드박스 크리에이터 전용 소통 채널(디스코드 서버) 초대 안내
+
+안녕하세요, [크리에이터 이름]님!
+
+샌드박스와 함께하게 되신 것을 진심으로 환영합니다. 🎉
+
+저희는 크리에이터님과의 빠르고 원활한 소통을 위해 '디스코드(Discord)' 메신저를 메인 소통 창구로 사용하고 있습니다. 크리에이터님만을 위한 전용 서버를 개설하였으니, 아래 안내에 따라 입장해 주시면 감사하겠습니다.
+
+📌 입장 방법 안내
+
+1. 디스코드 계정 생성
+   https://discord.com/login 에 접속하여 가입해 주세요.
+   PC 프로그램 및 모바일 앱을 설치하시면 훨씬 편리하게 소통하실 수 있습니다.
+
+2. 전용 서버 입장하기
+   계정 생성이 완료되었다면, 아래 초대 링크를 클릭해 주세요.
+   👉 [전달받은 초대 링크를 여기에 붙여넣으세요]
+   링크 클릭 후 [초대 수락하기]를 누르면 입장이 완료됩니다.
+
+3. 입장 후 인사 남기기
+   서버에 입장하신 후, #🖐️입장 채널에 인사를 남겨주세요!
+   확인 후 즉시 모든 채널을 이용하실 수 있도록 권한을 승인해 드리겠습니다.
+
+진행 중 궁금한 점이 있으시다면 언제든 회신 부탁드립니다.
+
+감사합니다.
+담당자 [본인 이름] 드림</pre>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">초대 링크를 크리에이터에게 전달했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">입장 후 #🖐️입장 채널에 인사 남기라고 안내했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">링크 보안 주의사항까지 함께 전달했다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('step-1')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">서버 개설 신청</span>
+          </div>
+        </button>
+        <button class="nav-btn primary" onclick="goToPage('step-3')">
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">다음</span>
+            <span class="nav-btn-title">역할 부여하기</span>
+          </div>
+          <span class="nav-btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 3: 역할 부여 (PM ONLY) ===== -->
+  <div class="page" data-page="step-3" data-mode="pm">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge check">확인 & 설정</div>
+        <h2 class="step-title">크리에이터 입장 확인 및 역할 부여하기</h2>
+        <p class="step-subtitle">크리에이터가 서버에 들어온 것을 확인한 뒤, 바로 역할을 부여합니다.</p>
+      </div>
+
+      <div class="media-block">
+        <div class="media-placeholder">
+          <div class="media-placeholder-icon">🎬</div>
+          <div class="media-placeholder-text">역할 부여 과정 영상 (GIF)</div>
+        </div>
+        <div class="media-caption">
+          <span class="media-caption-dot"></span>
+          멤버 목록에서 역할 부여까지
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>순서대로 따라하세요</h3>
+        <ol class="instruction-list">
+          <li class="instruction-item">
+            <span class="instruction-number">1</span>
+            <div class="instruction-content">
+              <p>디스코드 서버를 엽니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">2</span>
+            <div class="instruction-content">
+              <p>서버 우측의 <strong>멤버 목록</strong>에서 새로 들어온 크리에이터를 찾습니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">3</span>
+            <div class="instruction-content">
+              <p>해당 이름을 <strong>클릭</strong>합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">4</span>
+            <div class="instruction-content">
+              <p><strong>"역할"</strong> 버튼을 누릅니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">5</span>
+            <div class="instruction-content">
+              <p><strong>"크리에이터"</strong> 역할을 선택합니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">6</span>
+            <div class="instruction-content">
+              <p>크리에이터에게 채널이 정상적으로 보이는지 확인합니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">크리에이터 입장을 확인했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">크리에이터 역할을 부여했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">크리에이터에게 채널이 정상적으로 보이는지 확인했다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('step-2')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">초대 링크 전달</span>
+          </div>
+        </button>
+        <button class="nav-btn primary" onclick="goToPage('step-4')">
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">다음</span>
+            <span class="nav-btn-title">캠페인 채널 만들기</span>
+          </div>
+          <span class="nav-btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 4: 캠페인 채널 만들기 (PM ONLY) ===== -->
+  <div class="page" data-page="step-4" data-mode="pm">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge manage">채널 관리</div>
+        <h2 class="step-title">캠페인 채널 만들기</h2>
+        <p class="step-subtitle">새 캠페인이 시작되면, 규칙에 맞는 이름으로 전용 채널을 만듭니다.</p>
+      </div>
+
+      <div class="media-block">
+        <div class="media-placeholder">
+          <div class="media-placeholder-icon">🎬</div>
+          <div class="media-placeholder-text">채널 생성 과정 영상 (GIF)</div>
+        </div>
+        <div class="media-caption">
+          <span class="media-caption-dot"></span>
+          카테고리에서 채널 생성까지
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>채널명 규칙</h3>
+        <div class="example-box">
+          <div class="example-box-label">형식</div>
+          <p>YYMM-과업유형-캠페인</p>
+        </div>
+        <div class="example-box" style="margin-top: 12px;">
+          <div class="example-box-label">예시</div>
+          <p>2602-라이브-크랙파티챗</p>
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>이름을 정하는 기준</h3>
+        <table class="naming-table">
+          <thead>
+            <tr>
+              <th>구성 요소</th>
+              <th>설명</th>
+              <th>예시</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>YYMM</strong></td>
+              <td>캠페인 귀속 월</td>
+              <td>2602</td>
+            </tr>
+            <tr>
+              <td><strong>과업유형</strong></td>
+              <td>BDC / 라이브 / 커머스 / 출연 등</td>
+              <td>라이브</td>
+            </tr>
+            <tr>
+              <td><strong>캠페인</strong></td>
+              <td>광고주명 또는 프로젝트명</td>
+              <td>크랙파티챗</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">📌</span>
+        <div>캠페인 채널은 항상 <strong>제안</strong> 또는 <strong>섭외</strong> 카테고리에서 시작합니다.<br>• 광고주 확정 전 → <strong>제안</strong><br>• 광고주 확정 후 → <strong>섭외</strong></div>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">채널명을 규칙대로 만들었다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">제안 또는 섭외 카테고리에 생성했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">다른 사람이 봐도 어떤 캠페인인지 바로 알 수 있다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('step-3')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">역할 부여하기</span>
+          </div>
+        </button>
+        <button class="nav-btn primary" onclick="goToPage('step-5')">
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">다음</span>
+            <span class="nav-btn-title">첫 메시지 작성하기</span>
+          </div>
+          <span class="nav-btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 5: 첫 메시지 작성 (PM ONLY) ===== -->
+  <div class="page" data-page="step-5" data-mode="pm">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge manage">채널 관리</div>
+        <h2 class="step-title">캠페인 채널 첫 메시지 작성하기</h2>
+        <p class="step-subtitle">채널을 만들자마자 첫 메시지로 캠페인 핵심 정보를 정리해 둡니다.</p>
+      </div>
+
+      <div class="instructions">
+        <h3>왜 먼저 써야 하나요?</h3>
+        <ol class="instruction-list">
+          <li class="instruction-item">
+            <span class="instruction-number">1</span>
+            <div class="instruction-content">
+              <p>이후 <strong>일정 조율의 기준</strong>이 됩니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">2</span>
+            <div class="instruction-content">
+              <p>크리에이터가 확인해야 할 내용을 <strong>한 번에</strong> 보여줄 수 있습니다.</p>
+            </div>
+          </li>
+          <li class="instruction-item">
+            <span class="instruction-number">3</span>
+            <div class="instruction-content">
+              <p>나중에 다시 봐도 캠페인 개요를 <strong>바로 파악</strong>할 수 있습니다.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="template-block">
+        <div class="template-block-title">📋 첫 메시지 템플릿</div>
+      </div>
+      <div class="copy-block">
+        <div class="copy-block-header">
+          <span class="copy-block-label">캠페인 첫 메시지 템플릿</span>
+          <button class="copy-btn" onclick="copyTemplate(this)">복사</button>
+        </div>
+        <pre>YYMM-과업유형-캠페인
+
+● 과업
+사전 홍보 : 00월00일 ~ 00월00일 중, 날짜 택 1
+라이브 : 00월00일 ~ 00월00일 중, 날짜 택 1
+업로드 : 00월00일 ~ 00월00일 중, 날짜 택 1
+
+● 마케팅 포인트
+AAAAAA
+BBBBBB
+CCCCCC
+
+● 필수 소구 포인트
+AAAAAA
+BBBBBB
+CCCCCC</pre>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">첫 메시지를 작성했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">일정 범위를 넣었다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">필수 안내를 빠뜨리지 않았다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('step-4')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">캠페인 채널 만들기</span>
+          </div>
+        </button>
+        <button class="nav-btn primary" onclick="goToPage('step-6')">
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">다음</span>
+            <span class="nav-btn-title">채널 이동하기</span>
+          </div>
+          <span class="nav-btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 6: 채널 이동 (PM ONLY) ===== -->
+  <div class="page" data-page="step-6" data-mode="pm">
+    <div class="page-inner">
+      <div class="step-header">
+        <div class="step-badge manage">채널 관리</div>
+        <h2 class="step-title">캠페인 상태에 따라 채널 이동하기</h2>
+        <p class="step-subtitle">캠페인 진행 단계가 바뀌면, 채널을 해당 카테고리로 드래그해서 이동합니다.</p>
+      </div>
+
+      <div class="media-block">
+        <div class="media-placeholder">
+          <div class="media-placeholder-icon">🎬</div>
+          <div class="media-placeholder-text">채널 이동 과정 영상 (GIF)</div>
+        </div>
+        <div class="media-caption">
+          <span class="media-caption-dot"></span>
+          드래그 앤 드롭으로 카테고리 이동
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h3>이동 기준</h3>
+      </div>
+
+      <div class="category-flow">
+        <span class="category-tag">제안 / 섭외</span>
+        <span class="category-arrow">→</span>
+        <span class="category-tag active">진행</span>
+        <span class="category-arrow">→</span>
+        <span class="category-tag">완료 (정산 전)</span>
+        <span class="category-arrow">→</span>
+        <span class="category-tag">완료 (정산 완료)</span>
+      </div>
+
+      <div style="margin-top: 12px;">
+        <div class="category-flow">
+          <span class="category-tag">중단 또는 불발</span>
+          <span class="category-arrow">→</span>
+          <span class="category-tag" style="background: #FFF1F2; border-color: #FECDD3; color: var(--red);">드랍</span>
+        </div>
+      </div>
+
+      <div class="callout tip" style="margin-top: 28px;">
+        <span class="callout-icon">💡</span>
+        <div>채널은 그냥 두지 말고, <strong>상태가 바뀌는 즉시 이동</strong>합니다. 채널 위치 자체가 현재 캠페인 상태를 보여주는 표시입니다.</div>
+      </div>
+
+      <div class="checklist">
+        <div class="checklist-title">✓ 체크리스트</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">현재 상태에 맞는 카테고리로 이동했다</span>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="checklist-checkbox"><span class="checklist-check-icon">✓</span></div>
+          <span class="checklist-label">다른 PM이 봐도 진행 상태를 바로 알 수 있다</span>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="nav-btn prev" onclick="goToPage('step-5')">
+          <span class="nav-btn-arrow">←</span>
+          <div class="nav-btn-text">
+            <span class="nav-btn-label">이전</span>
+            <span class="nav-btn-title">첫 메시지 작성</span>
+          </div>
+        </button>
+        <div class="nav-spacer"></div>
+      </div>
+
+      <div class="callout success" style="margin-top: 32px; text-align: center;">
+        <span class="callout-icon">🎉</span>
+        <div><strong>모든 단계를 완료했습니다!</strong><br>이제 디스코드로 크리에이터와 원활하게 소통할 수 있습니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== STATE =====
+  let currentMode = 'creator';
+  let currentPage = 'welcome';
+
+  const STEPS = {
+    creator: [
+      { id: 'welcome', title: '시작', desc: '가이드 소개', section: null },
+      { id: 'step-0-1', title: '앱 설치하기', desc: 'PC / 모바일 설치', section: '시작 준비' },
+      { id: 'step-0-2', title: '회원가입하기', desc: '계정 만들기', section: '시작 준비' },
+      { id: 'step-0-3', title: '프로필 설정하기', desc: '실명으로 변경', section: '시작 준비' },
+      { id: 'step-0-4', title: '서버 입장하기', desc: '초대 링크로 입장', section: '시작 준비' },
+    ],
+    pm: [
+      { id: 'welcome', title: '시작', desc: '가이드 소개', section: null },
+      { id: 'step-0-1', title: '앱 설치하기', desc: 'PC / 모바일 설치', section: '시작 준비' },
+      { id: 'step-0-2', title: '회원가입하기', desc: '회사 이메일로 가입', section: '시작 준비' },
+      { id: 'step-0-3', title: '프로필 설정하기', desc: '샌드박스 실명으로', section: '시작 준비' },
+      { id: 'step-0-4', title: '서버 입장하기', desc: '초대 링크로 입장', section: '시작 준비' },
+      { id: 'step-1', title: '서버 개설 신청', desc: '크리에이터 전용 서버', section: 'PM 운영' },
+      { id: 'step-2', title: '초대 링크 전달', desc: '크리에이터에게 안내', section: 'PM 운영' },
+      { id: 'step-3', title: '역할 부여하기', desc: '입장 확인 후 권한 설정', section: 'PM 운영' },
+      { id: 'step-4', title: '캠페인 채널 만들기', desc: '채널명 규칙에 맞게', section: '채널 관리' },
+      { id: 'step-5', title: '첫 메시지 작성', desc: '캠페인 정보 정리', section: '채널 관리' },
+      { id: 'step-6', title: '채널 이동하기', desc: '상태별 카테고리 관리', section: '채널 관리' },
+    ]
+  };
+
+  // ===== SIDEBAR RENDER =====
+  function renderSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const steps = STEPS[currentMode];
+    let html = '';
+    let lastSection = null;
+
+    steps.forEach((step, i) => {
+      if (step.section && step.section !== lastSection) {
+        html += `<div class="sidebar-section-label">${step.section}</div>`;
+        lastSection = step.section;
+      }
+
+      const isActive = step.id === currentPage;
+      const num = step.id === 'welcome' ? '◎' : (i);
+
+      html += `
+        <div class="step-nav-item ${isActive ? 'active' : ''}" onclick="goToPage('${step.id}')">
+          <div class="step-nav-number">${num}</div>
+          <div class="step-nav-text">
+            <div class="step-nav-title">${step.title}</div>
+            <div class="step-nav-desc">${step.desc}</div>
+          </div>
+        </div>
+      `;
+    });
+
+    // Progress
+    const totalSteps = steps.length - 1; // exclude welcome
+    const currentIdx = steps.findIndex(s => s.id === currentPage);
+    const progress = currentIdx <= 0 ? 0 : Math.round((currentIdx / totalSteps) * 100);
+
+    html += `
+      <div class="progress-container">
+        <div class="progress-label">
+          <span>진행률</span>
+          <span>${progress}%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: ${progress}%"></div>
+        </div>
+      </div>
+    `;
+
+    sidebar.innerHTML = html;
+  }
+
+  // ===== PAGE NAVIGATION =====
+  function goToPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+    const targetPage = document.querySelector(`[data-page="${pageId}"]`);
+    if (targetPage) {
+      targetPage.classList.add('active');
+      currentPage = pageId;
+      renderSidebar();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  // ===== MODE SWITCHING =====
+  function switchMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+
+    // If current page is PM-only and switching to creator, go to welcome
+    const steps = STEPS[mode];
+    const currentExists = steps.find(s => s.id === currentPage);
+    if (!currentExists) {
+      currentPage = 'welcome';
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelector('[data-page="welcome"]').classList.add('active');
+    }
+
+    renderSidebar();
+
+    // Show/hide PM-only nav buttons in creator mode
+    document.querySelectorAll('[data-pm-only]').forEach(el => {
+      el.style.display = mode === 'creator' ? 'none' : '';
+    });
+  }
+
+  // ===== CHECKLIST =====
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+  }
+
+  // ===== COPY TEMPLATE =====
+  function copyTemplate(btn) {
+    const pre = btn.closest('.copy-block').querySelector('pre');
+    navigator.clipboard.writeText(pre.textContent).then(() => {
+      btn.textContent = '복사됨!';
+      setTimeout(() => { btn.textContent = '복사'; }, 2000);
+    });
+  }
+
+  // ===== INIT =====
+  renderSidebar();
+
+  // Hide PM-only nav in creator mode
+  document.querySelectorAll('[data-pm-only]').forEach(el => {
+    el.style.display = 'none';
+  });
+</script>
+</body>
+</html>
