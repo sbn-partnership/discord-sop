@@ -951,8 +951,8 @@
     <span>디스코드 온보딩 가이드</span>
   </div>
   <div class="mode-tabs">
-    <button class="mode-tab active" onclick="switchMode('creator')">크리에이터 가이드</button>
-    <button class="mode-tab" onclick="switchMode('pm')">PM 운영 가이드</button>
+    <button class="mode-tab" onclick="switchMode('creator')">크리에이터 가이드</button>
+    <button class="mode-tab active" onclick="switchMode('pm')">PM 운영 가이드</button>
   </div>
 </div>
 
@@ -1935,7 +1935,7 @@ CCCCCC</pre>
 
 <script>
   // ===== STATE =====
-  let currentMode = 'creator';
+  let currentMode = 'pm';
   let currentPage = 'welcome';
 
   const STEPS = {
@@ -2061,9 +2061,9 @@ CCCCCC</pre>
   // ===== INIT =====
   renderSidebar();
 
-  // Hide PM-only nav in creator mode
+  // Show/hide PM-only elements based on initial mode
   document.querySelectorAll('[data-pm-only]').forEach(el => {
-    el.style.display = 'none';
+    el.style.display = currentMode === 'creator' ? 'none' : '';
   });
 </script>
 </body>
