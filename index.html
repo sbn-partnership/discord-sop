@@ -961,6 +961,175 @@
     font-size: 14px;
   }
 
+  /* ===== CHANNEL GUIDE — Discord Mockup ===== */
+  .channel-guide-header {
+    text-align: center;
+    padding: 56px 20px 40px;
+  }
+  .channel-guide-header h2 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .channel-guide-header p {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .channel-guide-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 14px;
+    padding: 8px 18px;
+    background: var(--bg-subtle);
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+  .channel-guide-hint .hint-dot {
+    width: 12px; height: 12px; border-radius: 50%; display: inline-block;
+  }
+  .channel-guide-hint .hint-dot.red { background: var(--red); }
+  .channel-guide-hint .hint-dot.blue { background: var(--cyan); }
+
+  .discord-wrap {
+    padding: 0 24px;
+    max-width: 960px;
+    margin: 0 auto 60px;
+  }
+  .discord-mockup {
+    border-radius: var(--radius-md);
+    background: #313338;
+    position: relative;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+  }
+  .dm-title-bar {
+    background: #2b2d31; height: 32px; display: flex; align-items: center; padding: 0 12px;
+    border-bottom: 1px solid #1e1f22; border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+  .dm-title-dots { display: flex; gap: 6px; }
+  .dm-title-dots span { width: 10px; height: 10px; border-radius: 50%; }
+  .dm-title-dots .d-red { background: #ff5f57; }
+  .dm-title-dots .d-yellow { background: #febc2e; }
+  .dm-title-dots .d-green { background: #28c840; }
+  .dm-title-text { flex: 1; text-align: center; font-size: 12px; color: #949ba4; }
+  .dm-layout { display: flex; border-radius: 0 0 var(--radius-md) var(--radius-md); overflow: hidden; }
+
+  /* Server list */
+  .dm-server-list { width: 56px; background: #1e1f22; padding: 8px 0; display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
+  .dm-server-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .dm-server-divider { width: 24px; height: 2px; background: #35363c; margin: 4px 0; flex-shrink: 0; }
+  .dm-server-icon.add { background: #313338; color: #23a559; font-size: 20px; }
+
+  /* Channel sidebar */
+  .dm-channel-sidebar { width: 220px; background: #2b2d31; display: flex; flex-direction: column; flex-shrink: 0; }
+  .dm-server-header { padding: 12px 16px; font-weight: 700; font-size: 14px; color: #fff; border-bottom: 1px solid #1e1f22; display: flex; align-items: center; justify-content: space-between; }
+  .dm-channel-list { padding: 8px 0 8px 8px; }
+  .dm-channel-category { padding: 16px 4px 4px; font-size: 11px; font-weight: 700; color: #949ba4; letter-spacing: 0.02em; display: flex; align-items: center; justify-content: space-between; }
+  .dm-channel-category .dm-plus { color: #949ba4; font-size: 16px; padding-right: 4px; }
+  .dm-channel-item { padding: 5px 8px; margin: 1px 0; border-radius: 4px; font-size: 13px; color: #949ba4; display: flex; align-items: center; gap: 6px; }
+  .dm-channel-item.dm-active { background: #404249; color: #fff; }
+  .dm-ch { font-size: 16px; color: #80848e; }
+
+  /* Main chat */
+  .dm-main-chat { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .dm-chat-header { padding: 10px 16px; border-bottom: 1px solid #1e1f22; display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; color: #fff; }
+  .dm-chat-body { padding: 16px; }
+  .dm-welcome-card { text-align: center; padding: 24px 24px 12px; color: #fff; }
+  .dm-welcome-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .dm-welcome-card p { color: #949ba4; font-size: 12px; }
+  .dm-welcome-item { display: flex; align-items: center; gap: 10px; padding: 7px 12px; margin: 3px auto; max-width: 340px; background: #2b2d31; border-radius: 8px; font-size: 12px; color: #dbdee1; }
+  .dm-welcome-item .dm-end { margin-left: auto; color: #23a559; font-size: 14px; }
+  .dm-chat-date { text-align: center; color: #949ba4; font-size: 10px; margin: 10px 0 4px; border-top: 1px solid #404249; padding-top: 8px; }
+  .dm-chat-msg { display: flex; gap: 10px; padding: 3px 0; margin: 4px 0; }
+  .dm-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; }
+  .dm-msg-author { font-weight: 600; font-size: 12px; }
+  .dm-msg-time { color: #949ba4; font-size: 10px; margin-left: 6px; }
+  .dm-msg-text { color: #dbdee1; font-size: 12px; margin-top: 1px; }
+  .dm-chat-input { padding: 10px 16px; border-top: 1px solid #1e1f22; }
+  .dm-chat-input-box { background: #383a40; border-radius: 8px; padding: 8px 14px; color: #949ba4; font-size: 12px; }
+
+  /* Member list */
+  .dm-member-list { width: 170px; background: #2b2d31; padding: 10px 8px; flex-shrink: 0; border-left: 1px solid #1e1f22; }
+  .dm-member-section { font-size: 10px; font-weight: 700; color: #949ba4; padding: 6px 8px 3px; }
+  .dm-member-item { display: flex; align-items: center; gap: 7px; padding: 4px 8px; border-radius: 4px; font-size: 11px; color: #949ba4; }
+  .dm-member-av { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #fff; }
+
+  /* Dynamic highlight overlay */
+  #dm-highlight {
+    position: absolute; border: 2px solid transparent; border-radius: 4px;
+    pointer-events: none; z-index: 10; transition: all 0.2s;
+  }
+  #dm-highlight.hl-red { border-color: var(--red); background: rgba(233,0,75,0.1); }
+  #dm-highlight.hl-blue { border-color: var(--cyan); background: rgba(0,193,222,0.1); }
+
+  /* Markers — red (UI areas) */
+  .dm-marker {
+    position: absolute; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--red); color: #fff; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 20; transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 2px 6px rgba(233,0,75,0.3); border: 2px solid #fff;
+  }
+  .dm-marker:hover, .dm-marker.active { transform: scale(1.15); box-shadow: 0 3px 10px rgba(233,0,75,0.4); }
+  /* Markers — blue (channel/category) */
+  .dm-marker.dm-cm {
+    background: var(--cyan); width: 20px; height: 20px; font-size: 9px;
+    box-shadow: 0 2px 6px rgba(0,193,222,0.3);
+  }
+  .dm-marker.dm-cm:hover, .dm-marker.dm-cm.active { box-shadow: 0 3px 10px rgba(0,193,222,0.4); }
+
+  /* Tooltip */
+  .dm-tooltip {
+    position: absolute; z-index: 30; width: 300px;
+    background: var(--bg); border-radius: var(--radius-md); padding: 16px 18px;
+    border: 1px solid var(--border); box-shadow: var(--shadow-lg);
+    opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+    transform: translateY(4px);
+  }
+  .dm-tooltip.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .dm-tooltip-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; color: var(--text-primary); }
+  .dm-tooltip-title .dm-tn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 20px; height: 20px; border-radius: 50%; background: var(--red); color: #fff;
+    font-size: 10px; font-weight: 700; flex-shrink: 0; padding: 0 4px;
+  }
+  .dm-tooltip-title .dm-tn.blue { background: var(--cyan); }
+  .dm-tooltip-desc { color: var(--text-secondary); font-size: 12px; line-height: 1.65; }
+  .dm-tooltip-roles { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
+  .dm-tooltip-role { font-size: 10px; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+  .dm-tooltip-role.mg { background: #ECFDF5; color: #059669; }
+  .dm-tooltip-role.cr { background: #E0F2FE; color: #0284C7; }
+  .dm-tooltip-role.both { background: #EFF6FF; color: #2563EB; }
+  .dm-tooltip-role.priv { background: #FFF1F2; color: var(--red); }
+  .dm-tooltip-compare { margin-top: 6px; display: flex; gap: 6px; }
+  .dm-tooltip-vs { flex: 1; padding: 5px 8px; border-radius: 6px; font-size: 10px; line-height: 1.4; }
+  .dm-tooltip-vs.kakao { background: #FFF8E1; border: 1px solid #FFE082; }
+  .dm-tooltip-vs.kakao .vl { color: #F9A825; font-weight: 700; }
+  .dm-tooltip-vs.discord { background: #EDE7F6; border: 1px solid #B39DDB; }
+  .dm-tooltip-vs.discord .vl { color: #5865f2; font-weight: 700; }
+  .dm-tip-flow { display: flex; align-items: center; gap: 3px; margin: 6px 0; flex-wrap: wrap; font-size: 10px; font-weight: 600; }
+  .dm-tip-flow .fs { padding: 2px 6px; border-radius: 4px; }
+  .dm-tip-flow .arr { color: var(--text-tertiary); }
+  .dm-tip-flow .f1 { background: #EEF2FF; color: #4F46E5; }
+  .dm-tip-flow .f2 { background: #ECFDF5; color: #059669; }
+  .dm-tip-flow .f3 { background: #FEF3C7; color: #B45309; }
+  .dm-tip-flow .f4 { background: #E0F2FE; color: #0284C7; }
+  .dm-tip-flow .f5 { background: #FFF1F2; color: #E11D48; }
+  .dm-tooltip-close {
+    position: absolute; top: 8px; right: 10px; background: none; border: none;
+    color: var(--text-tertiary); font-size: 16px; cursor: pointer; line-height: 1;
+  }
+  .dm-tooltip-close:hover { color: var(--text-primary); }
+
+  .dm-overlay { position: fixed; inset: 0; z-index: 15; display: none; }
+  .dm-overlay.show { display: block; }
+
+  /* Channel guide — full width (no sidebar) */
+  .main.channel-guide-mode { margin-left: 0; }
+
   /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
     .sidebar { display: none; }
@@ -972,6 +1141,11 @@
     .welcome-hero { padding: 48px 20px 40px; }
     .mode-tabs { display: none; }
     .top-bar { padding: 0 16px; }
+    .dm-layout { flex-direction: column; }
+    .dm-server-list { flex-direction: row; width: 100%; height: 48px; overflow-x: auto; padding: 4px 8px; }
+    .dm-channel-sidebar { width: 100%; }
+    .dm-member-list { display: none; }
+    .dm-marker, #dm-highlight { display: none; }
   }
 </style>
 </head>
@@ -992,6 +1166,7 @@
   <div class="mode-tabs">
     <button class="mode-tab" onclick="switchMode('creator')">크리에이터 가이드</button>
     <button class="mode-tab active" onclick="switchMode('pm')">PM 운영 가이드</button>
+    <button class="mode-tab" onclick="switchToChannelGuide()">채널 가이드</button>
   </div>
 </div>
 
@@ -1975,6 +2150,116 @@
       </div>
     </div>
   </div>
+
+  <!-- ===== CHANNEL GUIDE PAGE ===== -->
+  <div class="page" data-page="channel-guide" data-mode="all">
+    <div class="channel-guide-header">
+      <h2>우리 디스코드 서버는 이렇게 생겼어요</h2>
+      <p>아래는 크리에이터 전용 서버의 실제 화면입니다.</p>
+      <div class="channel-guide-hint">
+        <span><span class="hint-dot red"></span> 화면 구조</span>
+        <span><span class="hint-dot blue"></span> 채널/카테고리 가이드</span>
+        — 번호를 클릭하거나 마우스를 올려보세요
+      </div>
+    </div>
+    <div class="dm-overlay" id="dmOverlay" onclick="dmCloseAll()"></div>
+    <div class="discord-wrap">
+      <div class="discord-mockup" id="dmMockup">
+        <div id="dm-highlight"></div>
+        <div class="dm-title-bar">
+          <div class="dm-title-dots"><span class="d-red"></span><span class="d-yellow"></span><span class="d-green"></span></div>
+          <div class="dm-title-text">디스코드 템플릿</div>
+        </div>
+        <div class="dm-layout">
+          <div class="dm-server-list" id="t-serverlist">
+            <div class="dm-server-icon" style="background:#5865f2;">🎮</div>
+            <div class="dm-server-icon" style="background:#57f287;">🎵</div>
+            <div class="dm-server-icon" style="background:#fee75c;color:#000;">📚</div>
+            <div class="dm-server-icon" style="background:#eb459e;">🎨</div>
+            <div class="dm-server-divider"></div>
+            <div class="dm-server-icon add">+</div>
+          </div>
+          <div class="dm-channel-sidebar" id="t-sidebar">
+            <div class="dm-server-header">디스코드 템플릿 <span style="font-size:16px;">▾</span></div>
+            <div class="dm-channel-list">
+              <div class="dm-channel-category" id="t-cat-general"><span>▾ 일반</span><span class="dm-plus">+</span></div>
+              <div class="dm-channel-item dm-active" id="t-ch-entry"><span class="dm-ch">#</span> 🖐️입장</div>
+              <div class="dm-channel-item" id="t-ch-notice"><span class="dm-ch">#</span> 📢공지사항</div>
+              <div class="dm-channel-item" id="t-ch-schedule"><span class="dm-ch">#</span> 🗓️스케줄관리</div>
+              <div class="dm-channel-item" id="t-ch-free"><span class="dm-ch">#</span> 🎉자유게시판</div>
+              <div class="dm-channel-item" id="t-ch-trend"><span class="dm-ch">#</span> 💌트렌드레터</div>
+              <div class="dm-channel-category" id="t-cat-proposal"><span>▾ 제안 (광고주 확정 X)</span><span class="dm-plus">+</span></div>
+              <div class="dm-channel-item"><span class="dm-ch">#</span> 2603-BDC-브랜드A</div>
+              <div class="dm-channel-category" id="t-cat-casting"><span>▾ 섭외 (광고주 확정 O)</span><span class="dm-plus">+</span></div>
+              <div class="dm-channel-item"><span class="dm-ch">#</span> 2603-라이브-브랜드B</div>
+              <div class="dm-channel-category" id="t-cat-progress"><span>▾ 진행</span><span class="dm-plus">+</span></div>
+              <div class="dm-channel-item"><span class="dm-ch">#</span> 2602-커머스-브랜드C</div>
+              <div class="dm-channel-category" id="t-cat-done1"><span>▸ 완료 (정산 전)</span><span class="dm-plus">+</span></div>
+              <div class="dm-channel-category" id="t-cat-done2"><span>▸ 완료 (정산 완료)</span><span class="dm-plus">+</span></div>
+              <div class="dm-channel-category" id="t-cat-drop"><span>▸ 드랍</span><span class="dm-plus">+</span></div>
+              <div class="dm-channel-category" id="t-cat-private"><span>▾ 비공개 정보</span><span class="dm-plus">+</span></div>
+              <div class="dm-channel-item"><span class="dm-ch">#</span> 정산관리</div>
+              <div class="dm-channel-item"><span class="dm-ch">#</span> 광고단가</div>
+              <div class="dm-channel-category" id="t-cat-voice"><span>▾ 음성 채널</span><span class="dm-plus">+</span></div>
+              <div class="dm-channel-item" id="t-ch-voice"><span style="font-size:14px;">🔊</span> 일반</div>
+            </div>
+          </div>
+          <div class="dm-main-chat" id="t-chat">
+            <div class="dm-chat-header"><span style="color:#80848e;font-size:18px;">#</span> 🖐️입장</div>
+            <div class="dm-chat-body">
+              <div class="dm-welcome-card"><h3>디스코드 템플릿에<br>오신 것을 환영합니다</h3><p>직접 만드신 새로운 서버에 오신 것을 환영해요.</p></div>
+              <div class="dm-welcome-item"><span>👥</span> 친구 초대하기 <span class="dm-end">✓</span></div>
+              <div class="dm-welcome-item"><span>🎨</span> 아이콘으로 서버 꾸미기 <span class="dm-end">✓</span></div>
+              <div class="dm-welcome-item"><span>🚀</span> 첫 메시지 보내기 <span class="dm-end" style="color:#949ba4;">›</span></div>
+              <div class="dm-chat-date">2026년 3월 6일</div>
+              <div class="dm-chat-msg"><div class="dm-avatar" style="background:#23a559;">🤖</div><div><div><span class="dm-msg-author" style="color:#23a559;">Support-Bot | SANDBOX</span><span class="dm-msg-time">오후 3:18</span></div><div class="dm-msg-text">→ 앗! 야생의 <strong>Support-Bot</strong>이(가) 나타났다!</div></div></div>
+              <div class="dm-chat-date">2026년 3월 21일</div>
+              <div class="dm-chat-msg"><div class="dm-avatar" style="background:#5865f2;">김</div><div><div><span class="dm-msg-author" style="color:#5865f2;">샌드박스 김철수</span><span class="dm-msg-time">오전 12:46</span></div><div class="dm-msg-text">→ <strong>샌드박스 김철수</strong> 님이 서버에 뛰어들어 오셨어요.</div><div style="background:#2b2d31;display:inline-block;padding:3px 8px;border-radius:6px;margin-top:3px;font-size:12px;color:#dbdee1;">🧸 손을 흔들어 인사해보세요!</div></div></div>
+            </div>
+            <div class="dm-chat-input"><div class="dm-chat-input-box"># 🖐️입장에 메시지 보내기</div></div>
+          </div>
+          <div class="dm-member-list" id="t-members">
+            <div class="dm-member-section">관리자 — 1</div>
+            <div class="dm-member-item"><div class="dm-member-av" style="background:#E9004B;">홍</div><span style="color:#E9004B;">샌드박스 홍길동</span></div>
+            <div class="dm-member-section" style="margin-top:8px;">SANDBOX — 2</div>
+            <div class="dm-member-item"><div class="dm-member-av" style="background:#5865f2;">김</div><span style="color:#5865f2;">샌드박스 김철수</span></div>
+            <div class="dm-member-item"><div class="dm-member-av" style="background:#5865f2;">이</div><span style="color:#5865f2;">샌드박스 이영희</span></div>
+            <div class="dm-member-section" style="margin-top:8px;">크리에이터 — 1</div>
+            <div class="dm-member-item"><div class="dm-member-av" style="background:#57f287;">박</div><span style="color:#57f287;">박창작</span></div>
+            <div class="dm-member-section" style="margin-top:8px;">동부 — 1</div>
+            <div class="dm-member-item"><div class="dm-member-av" style="background:#949ba4;">최</div><span style="color:#949ba4;">최협력_동부</span></div>
+            <div class="dm-member-section" style="margin-top:8px;">오프라인 — 2</div>
+            <div class="dm-member-item"><div class="dm-member-av" style="background:#23a559;">🤖</div>Support-Bot</div>
+            <div class="dm-member-item"><div class="dm-member-av" style="background:#23a559;">🤖</div>Support-Bot2</div>
+          </div>
+        </div>
+        <!-- Markers container (populated by JS) -->
+        <div id="dm-markers"></div>
+        <!-- Tooltips — UI areas -->
+        <div class="dm-tooltip" id="tip-1" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn">1</span>서버 목록</div><div class="dm-tooltip-desc">내가 참여 중인 <strong>서버들의 아이콘 목록</strong>입니다. 서버는 크리에이터별로 하나씩 만들어지며, 아이콘을 클릭하면 해당 서버로 이동합니다.</div></div>
+        <div class="dm-tooltip" id="tip-2" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn">2</span>채널 사이드바</div><div class="dm-tooltip-desc">서버 안의 <strong>모든 채널 목록</strong>이 표시되는 곳입니다. 원하는 채널을 클릭하면 가운데 화면이 바뀝니다.</div></div>
+        <div class="dm-tooltip" id="tip-3" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn">3</span>카테고리</div><div class="dm-tooltip-desc">비슷한 채널을 묶어주는 <strong>접이식 폴더</strong>입니다. ▾를 눌러 접거나 펼 수 있습니다.</div></div>
+        <div class="dm-tooltip" id="tip-4" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn">4</span>채널</div><div class="dm-tooltip-desc"><strong>#</strong> 기호가 붙은 것이 채널입니다. 글, 사진, 파일을 주고받는 곳이에요. 카카오톡과 달리 <strong>과거 대화 기록이 모두 보존</strong>됩니다.</div><div class="dm-tooltip-compare"><div class="dm-tooltip-vs kakao"><div class="vl">카카오톡</div>들어오기 전 대화 못 봄</div><div class="dm-tooltip-vs discord"><div class="vl">디스코드</div>과거 대화 전부 열람 가능</div></div></div>
+        <div class="dm-tooltip" id="tip-5" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn">5</span>메시지 영역</div><div class="dm-tooltip-desc">실제 <strong>대화가 오가는 메인 화면</strong>입니다. 하단 입력창에 내용을 쓴 뒤 Enter로 전송해요. <strong>@이름</strong>으로 호출하거나, 이모지 반응(👍✅)으로 확인 표시를 남길 수 있습니다.</div></div>
+        <div class="dm-tooltip" id="tip-6" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn">6</span>멤버 목록</div><div class="dm-tooltip-desc">서버에 참여 중인 <strong>사람들이 역할(Role)별로</strong> 표시됩니다.<br><span style="color:#E9004B;">● 관리자</span>&nbsp;<span style="color:#5865f2;">● SANDBOX</span>&nbsp;<span style="color:#57f287;">● 크리에이터</span>&nbsp;<span style="color:#949ba4;">● 동부</span><br>서버 입장 후 역할을 받아야 모든 채널이 보입니다.</div></div>
+        <div class="dm-tooltip" id="tip-7" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn">7</span>음성 채널</div><div class="dm-tooltip-desc">🔊 스피커 아이콘 채널은 <strong>클릭하면 즉시 음성 통화에 입장</strong>됩니다. 수락 과정이 없으니, 하단 🎙️ 버튼으로 <strong>음소거를 먼저</strong> 해두세요.</div><div class="dm-tooltip-compare"><div class="dm-tooltip-vs kakao"><div class="vl">카카오톡</div>전화 → 상대 수락 대기</div><div class="dm-tooltip-vs discord"><div class="vl">디스코드</div>클릭 = 즉시 입장!</div></div></div>
+        <!-- Tooltips — channels -->
+        <div class="dm-tooltip" id="tip-a" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">a</span>🖐️ 입장</div><div class="dm-tooltip-desc">서버에 새로 들어온 사람을 확인하는 채널. 입장 후 대기하면, 담당자가 확인 후 <strong>역할(권한)을 부여</strong>합니다. 역할을 받아야 다른 채널이 보여요.</div><div class="dm-tooltip-roles"><span class="dm-tooltip-role mg">담당자: 역할 부여</span><span class="dm-tooltip-role cr">크리에이터: 입장 후 대기</span></div></div>
+        <div class="dm-tooltip" id="tip-b" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">b</span>📢 공지사항</div><div class="dm-tooltip-desc"><strong>공지/안내를 게시</strong>하는 채널. 확인이 필요한 공지에는 이모지 반응(✅)으로 "읽었어요"를 표시해주세요.</div><div class="dm-tooltip-roles"><span class="dm-tooltip-role mg">담당자: 공지 작성</span><span class="dm-tooltip-role cr">크리에이터: 확인 & 반응</span></div></div>
+        <div class="dm-tooltip" id="tip-c" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">c</span>🗓️ 스케줄관리</div><div class="dm-tooltip-desc">일정 알림, 신규 일정 공유, <strong>일정 변경/조율</strong>이 진행되는 채널. 전체 일정은 여기서, 캠페인별 세부 일정은 각 캠페인 채널에서 관리합니다.</div><div class="dm-tooltip-roles"><span class="dm-tooltip-role both">담당자 & 크리에이터: 일정 공유/조율</span></div></div>
+        <div class="dm-tooltip" id="tip-d" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">d</span>🎉 자유게시판</div><div class="dm-tooltip-desc">업무 외 <strong>자유 대화</strong> 채널. 가벼운 소통, 정보 공유 등 편하게 사용하세요. 캠페인 관련 중요 결정은 해당 캠페인 채널에 남겨주세요.</div></div>
+        <div class="dm-tooltip" id="tip-e" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">e</span>💌 트렌드레터</div><div class="dm-tooltip-desc">샌드박스에서 제공하는 <strong>트렌드 리포트</strong>가 업로드되는 채널. 콘텐츠 기획·시장 흐름 참고용 자료가 공유됩니다.</div></div>
+        <!-- Tooltips — categories -->
+        <div class="dm-tooltip" id="tip-f" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">f</span>📨 제안 (광고주 확정 X)</div><div class="dm-tooltip-desc">크리에이터에게 적합한 캠페인을 <strong>제안하는 단계</strong>. 이 카테고리에서 캠페인 채널이 처음 생성됩니다.</div><div class="dm-tooltip-roles"><span class="dm-tooltip-role mg">담당자: 채널 생성 & 제안</span><span class="dm-tooltip-role cr">크리에이터: 조건 확인 & 회신</span></div></div>
+        <div class="dm-tooltip" id="tip-g" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">g</span>🎯 섭외 (광고주 확정 O)</div><div class="dm-tooltip-desc">광고주가 크리에이터를 선정하여 <strong>섭외 요청된 캠페인</strong>. 확정된 조건(일정/과업/필수 포인트)을 최종 정리합니다.</div><div class="dm-tooltip-roles"><span class="dm-tooltip-role mg">담당자: 조건 정리</span><span class="dm-tooltip-role cr">크리에이터: 최종 확인</span></div></div>
+        <div class="dm-tooltip" id="tip-h" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">h</span>🔥 진행</div><div class="dm-tooltip-desc">현재 <strong>실행 중인 캠페인</strong>. 콘텐츠 구성, 검수, 링크 공유, 이슈 대응 등 실무 소통이 이루어집니다.</div><div class="dm-tooltip-roles"><span class="dm-tooltip-role both">담당자 & 크리에이터: 실무 소통</span></div></div>
+        <div class="dm-tooltip" id="tip-i" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">i</span>✅ 완료 (정산 전)</div><div class="dm-tooltip-desc">캠페인 과업이 완료된 상태. 결과물 링크, 완료 증빙, 리포트 등 <strong>정산에 필요한 자료</strong>를 정리합니다.</div></div>
+        <div class="dm-tooltip" id="tip-j" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">j</span>📦 완료 (정산 완료)</div><div class="dm-tooltip-desc">정산까지 모두 끝난 <strong>아카이브 상태</strong>. 캠페인 히스토리/레퍼런스 보관용.</div></div>
+        <div class="dm-tooltip" id="tip-k" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">k</span>❌ 드랍</div><div class="dm-tooltip-desc">중단/불발된 캠페인을 <strong>아카이빙</strong>하는 카테고리. 추후 유사 캠페인 참고를 위해 이유를 간단히 남겨주세요.</div></div>
+        <div class="dm-tooltip" id="tip-l" onmouseenter="dmCancelClose()" onmouseleave="dmHout()"><button class="dm-tooltip-close" onclick="dmCloseAll()">×</button><div class="dm-tooltip-title"><span class="dm-tn blue">l</span>🔒 비공개 정보</div><div class="dm-tooltip-desc">정산, 광고 단가, 견적 등 <strong>민감한 상업 정보</strong>를 관리하는 채널. 담당자와 크리에이터만 접근할 수 있으며, 외부(동부)에는 공개되지 않습니다.</div><div class="dm-tooltip-roles"><span class="dm-tooltip-role both">담당자 & 크리에이터만 접근 가능</span><span class="dm-tooltip-role priv">동부 접근 불가</span></div></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -2059,15 +2344,22 @@
   }
 
   // ===== MODE SWITCHING =====
+  let isChannelGuide = false;
+
   function switchMode(mode) {
     currentMode = mode;
+    isChannelGuide = false;
     document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
     event.target.classList.add('active');
+
+    // Restore sidebar & main layout
+    document.getElementById('sidebar').style.display = '';
+    document.getElementById('main').classList.remove('channel-guide-mode');
 
     // If current page is PM-only and switching to creator, go to welcome
     const steps = STEPS[mode];
     const currentExists = steps.find(s => s.id === currentPage);
-    if (!currentExists) {
+    if (!currentExists || currentPage === 'channel-guide') {
       currentPage = 'welcome';
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelector('[data-page="welcome"]').classList.add('active');
@@ -2084,6 +2376,27 @@
     });
   }
 
+  function switchToChannelGuide() {
+    isChannelGuide = true;
+    document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+    // Activate the channel guide tab (3rd button)
+    document.querySelectorAll('.mode-tab')[2].classList.add('active');
+
+    // Hide sidebar, expand main
+    document.getElementById('sidebar').style.display = 'none';
+    document.getElementById('main').classList.add('channel-guide-mode');
+
+    // Switch to channel guide page
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelector('[data-page="channel-guide"]').classList.add('active');
+    currentPage = 'channel-guide';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Position markers after layout settles
+    requestAnimationFrame(() => { requestAnimationFrame(dmPositionMarkers); });
+  }
+
   // ===== CHECKLIST =====
   function toggleCheck(item) {
     item.classList.toggle('checked');
@@ -2098,6 +2411,159 @@
       setTimeout(() => { btn.textContent = '복사'; btn.style.background = ''; }, 2000);
     });
   }
+
+  // ===== CHANNEL GUIDE — MARKER SYSTEM =====
+  const DM_MARKERS = [
+    // Red — UI areas
+    {id:'1',label:'1',target:'t-serverlist',type:'red',pos:'top'},
+    {id:'2',label:'2',target:'t-sidebar',type:'red',pos:'top-right'},
+    {id:'3',label:'3',target:'t-cat-general',type:'red',pos:'right'},
+    {id:'4',label:'4',target:'t-ch-entry',type:'red',pos:'right'},
+    {id:'5',label:'5',target:'t-chat',type:'red',pos:'top-right'},
+    {id:'6',label:'6',target:'t-members',type:'red',pos:'top-right'},
+    {id:'7',label:'7',target:'t-ch-voice',type:'red',pos:'right'},
+    // Blue — channels
+    {id:'a',label:'a',target:'t-ch-entry',type:'blue',pos:'far-right'},
+    {id:'b',label:'b',target:'t-ch-notice',type:'blue',pos:'far-right'},
+    {id:'c',label:'c',target:'t-ch-schedule',type:'blue',pos:'far-right'},
+    {id:'d',label:'d',target:'t-ch-free',type:'blue',pos:'far-right'},
+    {id:'e',label:'e',target:'t-ch-trend',type:'blue',pos:'far-right'},
+    // Blue — categories
+    {id:'f',label:'f',target:'t-cat-proposal',type:'blue',pos:'far-right'},
+    {id:'g',label:'g',target:'t-cat-casting',type:'blue',pos:'far-right'},
+    {id:'h',label:'h',target:'t-cat-progress',type:'blue',pos:'far-right'},
+    {id:'i',label:'i',target:'t-cat-done1',type:'blue',pos:'far-right'},
+    {id:'j',label:'j',target:'t-cat-done2',type:'blue',pos:'far-right'},
+    {id:'k',label:'k',target:'t-cat-drop',type:'blue',pos:'far-right'},
+    {id:'l',label:'l',target:'t-cat-private',type:'blue',pos:'far-right'},
+  ];
+
+  let dmPinned = false, dmActiveId = null, dmCloseTimer = null;
+
+  // Create marker DOM elements
+  (function initMarkers() {
+    const container = document.getElementById('dm-markers');
+    if (!container) return;
+    DM_MARKERS.forEach(m => {
+      const el = document.createElement('div');
+      el.className = 'dm-marker' + (m.type === 'blue' ? ' dm-cm' : '');
+      el.textContent = m.label;
+      el.dataset.mid = m.id;
+      el.onmouseenter = function() { dmShow(m.id, el); };
+      el.onmouseleave = function() { dmHout(); };
+      el.onclick = function() { dmPin(m.id, el); };
+      container.appendChild(el);
+    });
+  })();
+
+  function dmGetOffset(el) {
+    const mockup = document.getElementById('dmMockup');
+    if (!mockup) return null;
+    const mr = mockup.getBoundingClientRect(), er = el.getBoundingClientRect();
+    return { top: er.top - mr.top, left: er.left - mr.left, width: er.width, height: er.height, right: er.right - mr.left, bottom: er.bottom - mr.top };
+  }
+
+  function dmPositionMarkers() {
+    const container = document.getElementById('dm-markers');
+    if (!container) return;
+    DM_MARKERS.forEach(m => {
+      const target = document.getElementById(m.target);
+      const marker = container.querySelector(`[data-mid="${m.id}"]`);
+      if (!target || !marker) return;
+      const o = dmGetOffset(target);
+      if (!o) return;
+      const sz = m.type === 'blue' ? 20 : 24;
+      let top, left;
+      if (m.pos === 'top') { top = o.top - sz/2; left = o.left + o.width/2 - sz/2; }
+      else if (m.pos === 'top-right') { top = o.top + 4; left = o.right - sz - 4; }
+      else if (m.pos === 'right') { top = o.top + o.height/2 - sz/2; left = o.right - sz - 2; }
+      else if (m.pos === 'far-right') { top = o.top + o.height/2 - sz/2; left = o.right + 4; }
+      marker.style.top = top + 'px';
+      marker.style.left = left + 'px';
+    });
+  }
+
+  function dmHighlight(id) {
+    const m = DM_MARKERS.find(x => x.id === id);
+    if (!m) return;
+    const target = document.getElementById(m.target);
+    const hl = document.getElementById('dm-highlight');
+    if (!target || !hl) return;
+    const o = dmGetOffset(target);
+    if (!o) return;
+    hl.style.top = o.top + 'px';
+    hl.style.left = o.left + 'px';
+    hl.style.width = o.width + 'px';
+    hl.style.height = o.height + 'px';
+    hl.className = m.type === 'blue' ? 'hl-blue' : 'hl-red';
+  }
+
+  function dmPosTip(id, markerEl) {
+    const tip = document.getElementById('tip-' + id);
+    if (!tip) return;
+    const mockup = document.getElementById('dmMockup');
+    if (!mockup) return;
+    const mr = mockup.getBoundingClientRect(), er = markerEl.getBoundingClientRect();
+    let left = er.right - mr.left + 8, top = er.top - mr.top - 8;
+    if (left + 310 > mr.width) left = er.left - mr.left - 310;
+    if (left < 8) left = 8;
+    if (top < 8) top = 40;
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+  }
+
+  function dmClearActive() {
+    document.querySelectorAll('.dm-tooltip.show').forEach(t => t.classList.remove('show'));
+    document.querySelectorAll('.dm-marker.active').forEach(m => m.classList.remove('active'));
+    const hl = document.getElementById('dm-highlight');
+    if (hl) { hl.className = ''; hl.style.width = '0'; }
+  }
+
+  function dmShow(id, el) {
+    if (dmPinned) return;
+    dmCancelClose();
+    dmClearActive();
+    dmPosTip(id, el);
+    const tip = document.getElementById('tip-' + id);
+    if (tip) tip.classList.add('show');
+    el.classList.add('active');
+    dmHighlight(id);
+  }
+
+  function dmPin(id, el) {
+    if (dmPinned && dmActiveId === id) { dmCloseAll(); return; }
+    dmCancelClose();
+    dmClearActive();
+    dmPosTip(id, el);
+    const tip = document.getElementById('tip-' + id);
+    if (tip) tip.classList.add('show');
+    el.classList.add('active');
+    dmHighlight(id);
+    dmActiveId = id;
+    dmPinned = true;
+    document.getElementById('dmOverlay').classList.add('show');
+  }
+
+  function dmHout() {
+    if (!dmPinned) dmCloseTimer = setTimeout(dmCloseAll, 250);
+  }
+
+  function dmCancelClose() {
+    if (dmCloseTimer) { clearTimeout(dmCloseTimer); dmCloseTimer = null; }
+  }
+
+  function dmCloseAll() {
+    dmCancelClose();
+    dmClearActive();
+    dmActiveId = null;
+    dmPinned = false;
+    const overlay = document.getElementById('dmOverlay');
+    if (overlay) overlay.classList.remove('show');
+  }
+
+  window.addEventListener('resize', function() {
+    if (isChannelGuide) dmPositionMarkers();
+  });
 
   // ===== INIT =====
   renderSidebar();
